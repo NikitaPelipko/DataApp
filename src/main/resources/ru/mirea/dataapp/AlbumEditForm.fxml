@@ -6,8 +6,8 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="ru.mirea.dataapp.controller.AlbumEditController"
-      spacing="10" prefWidth="320" prefHeight="260">
-
+      spacing="10" prefWidth="320" prefHeight="260"
+      stylesheets="@styles.css">
     <children>
         <Label text="Название альбома"/>
         <TextField fx:id="nameField"/>

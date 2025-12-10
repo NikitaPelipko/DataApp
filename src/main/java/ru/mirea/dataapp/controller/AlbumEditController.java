@@ -148,6 +148,9 @@ public class AlbumEditController {
             );
             dialog.setTitle("Выбор исполнителя");
             dialog.setHeaderText("Выберите исполнителя");
+            dialog.getDialogPane().getStylesheets().add(
+                    getClass().getResource("/ru/mirea/dataapp/styles.css").toExternalForm()
+            );
             dialog.setContentText(null);
 
             Optional<String> result = dialog.showAndWait();

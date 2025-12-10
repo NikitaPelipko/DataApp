@@ -25,10 +25,6 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         var fxmlLocation = Launcher.class.getResource("MainForm.fxml");
-        if (fxmlLocation == null) {
-            throw new IllegalStateException("Не найден main.fxml в resources!");
-        }
-
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
 
 

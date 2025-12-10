@@ -9,7 +9,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.geometry.Insets?>
 <BorderPane fx:controller="ru.mirea.dataapp.controller.MainController"
-            xmlns:fx="http://javafx.com/fxml">
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@styles.css">
     <top>
         <VBox spacing="8">
             <padding>

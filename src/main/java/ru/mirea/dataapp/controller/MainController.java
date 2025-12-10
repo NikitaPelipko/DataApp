@@ -344,6 +344,7 @@ public class MainController {
             TableColumn<Map<String, Object>, Object> column = new TableColumn<>(key);
             column.setCellValueFactory(param ->
                     new ReadOnlyObjectWrapper<>(param.getValue().get(key)));
+            column.setPrefWidth(150);
             tableView.getColumns().add(column);
         }
     }

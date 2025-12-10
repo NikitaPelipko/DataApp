@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="ru.mirea.dataapp.controller.ArtistEditController"
-      spacing="10" prefWidth="300" prefHeight="200">
+      spacing="10" prefWidth="300" prefHeight="200"
+      stylesheets="@styles.css">
     <children>
         <Label text="Имя исполнителя"/>
         <TextField fx:id="nameField"/>

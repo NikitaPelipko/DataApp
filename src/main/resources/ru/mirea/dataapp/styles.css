@@ -1,0 +1,111 @@
+/* Общие настройки */
+.root {
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-font-size: 13px;
+}
+
+.border-pane {
+    -fx-background-color: #f4f6f8;
+}
+
+.hbox {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.label {
+    -fx-text-fill: #333333;
+}
+
+.text-field,
+.password-field,
+.combo-box-base {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #d0d4da;
+    -fx-border-width: 1;
+    -fx-padding: 4 6 4 6;
+}
+
+.text-field:focused,
+.password-field:focused,
+.combo-box-base:focused {
+    -fx-border-color: #4c8bf5;
+    -fx-effect: dropshadow(two-pass-box, rgba(76,139,245,0.25), 4, 0, 0, 0);
+}
+
+.button {
+    -fx-background-radius: 4;
+    -fx-background-color: #4c8bf5;
+    -fx-text-fill: white;
+    -fx-font-weight: 500;
+    -fx-padding: 4 10 4 10;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #3a73d8;
+}
+
+.button:pressed {
+    -fx-background-color: #315fb3;
+}
+
+.button.danger {
+    -fx-background-color: #e55353;
+}
+
+.button.danger:hover {
+    -fx-background-color: #c63f3f;
+}
+
+/* Контейнер таблицы */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2;
+    -fx-padding: 4;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-size: 30px;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 8 0 8;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f3f4ff;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-row-cell:filled:hover {
+    -fx-background-color: #e0f2fe;
+}
+
+.table-view .table-row-cell:filled:selected,
+.table-view .table-row-cell:filled:selected:hover {
+    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+    -fx-text-fill: white;
+}
+
+
+.table-view .table-cell {
+    -fx-padding: 4 8 4 8;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: transparent;
+}
+
