@@ -12,8 +12,11 @@
         <Label text="Слушатели"/>
         <TextField fx:id="listenersField"/>
 
-        <Label text="Id альбома"/>
-        <TextField fx:id="albumField"/>
+        <Label text="ID альбома"/>
+        <HBox spacing="5">
+            <TextField fx:id="albumField"/>
+            <Button text="..." onAction="#onSelectAlbum"/>
+        </HBox>
 
         <Label text="Жанр"/>
         <TextField fx:id="genreField"/>

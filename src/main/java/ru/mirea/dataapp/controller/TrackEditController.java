@@ -1,26 +1,32 @@
 package ru.mirea.dataapp.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
+import ru.mirea.dataapp.database.AlbumRepository;
 import ru.mirea.dataapp.database.TrackRepository;
 import ru.mirea.dataapp.util.MessageService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class TrackEditController {
 
     private final MessageService messageService;
     private final TrackRepository trackRepository;
+    private final AlbumRepository albumRepository;
     private Integer trackId;
 
-    public TrackEditController(MessageService messageService, TrackRepository trackRepository) {
+    public TrackEditController(MessageService messageService, TrackRepository trackRepository, AlbumRepository albumRepository) {
         this.messageService = messageService;
         this.trackRepository = trackRepository;
+        this.albumRepository = albumRepository;
     }
 
     @FXML
@@ -119,4 +125,35 @@ public class TrackEditController {
     private void onCancel() {
         dialogStage.close();
     }
-}
+
+    @FXML
+    private void onSelectAlbum() throws SQLException {
+        try {
+            List<Map<String, Object>> albums = albumRepository.findAll();
+
+            List<String> names = albums.stream()
+                    .map(a -> a.get("album_id") + " - " + a.get("album_name"))
+                    .toList();
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(
+                    names.isEmpty() ? null : names.get(0),
+                    names
+            );
+            dialog.setTitle("Выбор альбома");
+            dialog.setHeaderText("Выберите альбом");
+            dialog.setContentText(null);
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String selected = result.get();
+                String idStr = selected.split(" - ")[0].trim();
+                albumField.setText(idStr);
+            }
+        } catch (SQLException e) {
+            messageService.showError("Ошибка при поиске альбомов:\n" + e.getMessage());
+            throw e;
+
+        }
+    }
+
+    }

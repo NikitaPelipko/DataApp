@@ -13,7 +13,11 @@
         <TextField fx:id="nameField"/>
 
         <Label text="ID исполнителя"/>
-        <TextField fx:id="artistIdField"/>
+        <HBox spacing="5">
+            <TextField fx:id="artistIdField"/>
+            <Button text="..." onAction="#onSelectArtist"/>
+        </HBox>
+
 
         <Label text="Слушатели"/>
         <TextField fx:id="listenersField"/>

@@ -13,8 +13,6 @@ import ru.mirea.dataapp.database.ArtistRepository;
 import ru.mirea.dataapp.database.DataBaseManager;
 import ru.mirea.dataapp.database.TrackRepository;
 import ru.mirea.dataapp.util.MessageService;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +36,8 @@ public class MainController {
     private Button editButton;
     @FXML
     private Button deleteButton;
+    @FXML private TextField searchField;
+    @FXML private Button searchButton;
 
     @FXML
     private TableView<Map<String, Object>> tableView;
@@ -194,6 +194,30 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void onSearch() {
+        String selected = tableSelector.getValue();
+        String text = searchField.getText();
+        if (selected == null || text == null || text.isBlank()) {
+            loadSelectedTable(); // если строка пустая — показать всё
+            return;
+        }
+
+        try {
+            List<Map<String, Object>> data;
+            switch (selected) {
+                case "Artist" -> data = artistRepository.findByName(text);
+                case "Album"  -> data = albumRepository.findByName(text);
+                case "Track"  -> data = trackRepository.findByName(text);
+                default       -> { return; }
+            }
+            setupTableColumns(data);
+            tableView.getItems().setAll(data);
+        } catch (SQLException e) {
+            messageService.showError("Ошибка при поиске:\n" + e.getMessage());
+        }
+    }
+
     private boolean showAlbumEditDialog(Map<String, Object> row) {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -201,20 +225,21 @@ public class MainController {
             );
 
             loader.setControllerFactory(c -> new AlbumEditController(
-                    messageService, albumRepository
+                    messageService, albumRepository, artistRepository
             ));
 
             Parent root = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle(row == null ? "Добавить альбом" : "Изменить альбом");
+            dialogStage.setResizable(false);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(tableView.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
 
             AlbumEditController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setInitialData(row);   // row == null → добавление, != null → редактирование
+            controller.setInitialData(row);
 
             dialogStage.showAndWait();
             return controller.isOkClicked();
@@ -232,13 +257,14 @@ public class MainController {
             );
 
             loader.setControllerFactory(c -> new TrackEditController(
-                    messageService, trackRepository
+                    messageService, trackRepository, albumRepository
             ));
 
             Parent root = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle(row == null ? "Добавить трек" : "Изменить трек");
+            dialogStage.setResizable(false);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(tableView.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
@@ -269,6 +295,7 @@ public class MainController {
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle(row == null ? "Добавить исполнителя" : "Изменить исполнителя");
+            dialogStage.setResizable(false);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(tableView.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
@@ -320,6 +347,8 @@ public class MainController {
             tableView.getColumns().add(column);
         }
     }
+
+
 
 
 

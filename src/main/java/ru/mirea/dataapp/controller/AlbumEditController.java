@@ -1,13 +1,17 @@
 package ru.mirea.dataapp.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.mirea.dataapp.database.AlbumRepository;
+import ru.mirea.dataapp.database.ArtistRepository;
 import ru.mirea.dataapp.util.MessageService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class AlbumEditController {
 
@@ -19,6 +23,7 @@ public class AlbumEditController {
 
     private final MessageService messageService;
     private final AlbumRepository albumRepository;
+    private final ArtistRepository artistRepository;
 
     private Stage dialogStage;
     private boolean okClicked = false;
@@ -30,9 +35,10 @@ public class AlbumEditController {
     private Integer currentYear;
 
     public AlbumEditController(MessageService messageService,
-                               AlbumRepository albumRepository) {
+                               AlbumRepository albumRepository, ArtistRepository artistRepository) {
         this.messageService = messageService;
         this.albumRepository = albumRepository;
+        this.artistRepository = artistRepository;
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -126,4 +132,33 @@ public class AlbumEditController {
             return current;
         }
     }
+
+    @FXML
+    private void onSelectArtist() {
+        try {
+            List<Map<String, Object>> artists = artistRepository.findAll();
+
+            List<String> names = artists.stream()
+                    .map(a -> a.get("artist_id") + " - " + a.get("artist_name"))
+                    .toList();
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(
+                    names.isEmpty() ? null : names.get(0),
+                    names
+            );
+            dialog.setTitle("Выбор исполнителя");
+            dialog.setHeaderText("Выберите исполнителя");
+            dialog.setContentText(null);
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String selected = result.get(); // формат "id - name"
+                String idStr = selected.split(" - ")[0].trim();
+                artistIdField.setText(idStr);
+            }
+        } catch (SQLException e) {
+            messageService.showError("Ошибка при загрузке исполнителей:\n" + e.getMessage());
+        }
+    }
+
 }

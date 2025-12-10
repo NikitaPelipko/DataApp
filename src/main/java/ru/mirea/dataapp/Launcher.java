@@ -7,13 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ru.mirea.dataapp.controller.MainController;
-import ru.mirea.dataapp.database.DataBaseManager;
 import ru.mirea.dataapp.database.DataBaseManagerImpl;
-import ru.mirea.dataapp.database.AlbumRepository;
 import ru.mirea.dataapp.database.AlbumRepositoryImpl;
-import ru.mirea.dataapp.database.ArtistRepository;
 import ru.mirea.dataapp.database.ArtistRepositoryImpl;
-import ru.mirea.dataapp.database.TrackRepository;
 import ru.mirea.dataapp.database.TrackRepositoryImpl;
 import ru.mirea.dataapp.util.MessageService;
 

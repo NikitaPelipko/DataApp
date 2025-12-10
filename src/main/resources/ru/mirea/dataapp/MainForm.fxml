@@ -30,8 +30,11 @@
                 <Button text="Добавить" fx:id="addButton" onAction="#onAdd"/>
                 <Button text="Изменить" fx:id="editButton" onAction="#onEdit"/>
                 <Button text="Удалить" fx:id="deleteButton" onAction="#onDelete"/>
+                <TextField fx:id="searchField" promptText="Имя / название"/>
+                <Button text="Найти" onAction="#onSearch" fx:id="searchButton"/>
             </HBox>
         </VBox>
+
     </top>
     <center>
         <TableView fx:id="tableView"/>
