@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ru.mirea.dataapp.controller.AlbumEditController"
+      spacing="10" prefWidth="320" prefHeight="260">
+
+    <children>
+        <Label text="Название альбома"/>
+        <TextField fx:id="nameField"/>
+
+        <Label text="ID исполнителя"/>
+        <TextField fx:id="artistIdField"/>
+
+        <Label text="Слушатели"/>
+        <TextField fx:id="listenersField"/>
+
+        <Label text="Длительность (сек)"/>
+        <TextField fx:id="durationField"/>
+
+        <Label text="Год релиза"/>
+        <TextField fx:id="yearField"/>
+
+        <HBox spacing="10">
+            <Button text="Сохранить" onAction="#onOk"/>
+            <Button text="Отмена" onAction="#onCancel"/>
+        </HBox>
+    </children>
+</VBox>
