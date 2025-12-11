@@ -1,4 +1,4 @@
-/* Общие настройки */
+
 .root {
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
     -fx-font-size: 13px;
@@ -51,15 +51,6 @@
     -fx-background-color: #315fb3;
 }
 
-.button.danger {
-    -fx-background-color: #e55353;
-}
-
-.button.danger:hover {
-    -fx-background-color: #c63f3f;
-}
-
-/* Контейнер таблицы */
 .table-view {
     -fx-background-color: #ffffff;
     -fx-background-radius: 6;
