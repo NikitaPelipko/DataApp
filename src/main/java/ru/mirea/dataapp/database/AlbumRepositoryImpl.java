@@ -64,28 +64,6 @@ public class AlbumRepositoryImpl implements AlbumRepository{
     }
 
     @Override
-    public Map<String, Object> findById(int albumId) throws SQLException {
-        String sql = "SELECT * FROM Album WHERE album_id = ?";
-        Map<String, Object> album = new HashMap<>();
-        try (ResultSet rs = databaseManager.executeQuery(sql, albumId)) {
-            if (rs.next()) {
-                album.put("album_id", rs.getInt("album_id"));
-                album.put("album_name", rs.getString("album_name"));
-                album.put("listeners", rs.getInt("listeners"));
-                album.put("artist_id", rs.getInt("artist_id"));
-                album.put("duration", rs.getInt("duration"));
-                album.put("release_year", rs.getString("release_year"));
-                return album;
-            }
-        }
-        catch (SQLException e) {
-            messageService.showError("Ошибка при загрузке списка альбомов:\n" + e.getMessage());
-            throw e;
-        }
-        return null;
-    }
-
-    @Override
     public List<Map<String, Object>> findByName(String name) throws SQLException {
         String sql = "SELECT * FROM Album WHERE album_name LIKE ?";
         List<Map<String, Object>> albums = new ArrayList<>();
@@ -108,28 +86,6 @@ public class AlbumRepositoryImpl implements AlbumRepository{
         return albums;
     }
 
-    @Override
-    public List<Map<String, Object>> findByArtist(int artistId) throws SQLException {
-        String sql = "SELECT * FROM Album WHERE artist_id = ?";
-        List<Map<String, Object>> albums = new ArrayList<>();
-        try (ResultSet rs = databaseManager.executeQuery(sql, artistId)) {
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                row.put("album_id", rs.getInt("album_id"));
-                row.put("album_name", rs.getString("album_name"));
-                row.put("listeners", rs.getInt("listeners"));
-                row.put("artist_id", rs.getInt("artist_id"));
-                row.put("duration", rs.getInt("duration"));
-                row.put("release_year", rs.getString("release_year"));
-                albums.add(row);
-            }
-        }
-        catch (SQLException e) {
-            messageService.showError("Ошибка при загрузке списка альбомов:\n" + e.getMessage());
-            throw e;
-        }
-        return albums;
-    }
 
     @Override
     public void deleteAlbum(Integer albumId) throws SQLException {

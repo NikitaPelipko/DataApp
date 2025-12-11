@@ -27,7 +27,6 @@ public class Launcher extends Application {
         var fxmlLocation = Launcher.class.getResource("MainForm.fxml");
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
 
-
         var messageService = new MessageService();
         var databaseManager = new DataBaseManagerImpl(messageService);
         var artistRepo = new ArtistRepositoryImpl(messageService, databaseManager);

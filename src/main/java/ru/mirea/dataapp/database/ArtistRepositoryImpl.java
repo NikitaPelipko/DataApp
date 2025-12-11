@@ -63,24 +63,6 @@ public class ArtistRepositoryImpl implements ArtistRepository{
     }
 
     @Override
-    public Map<String, Object> findById(int artistId) throws SQLException {
-        String sql = "SELECT * FROM Artist WHERE artist_id = ?";
-        Map<String, Object> artist = new HashMap<>();
-        try (ResultSet rs = dataBaseManager.executeQuery(sql, artistId)) {
-            if (rs.next()){
-                artist.put("artist_id", rs.getInt("artist_id"));
-                artist.put("artist_name", rs.getString("artist_name"));
-                artist.put("listeners", rs.getInt("listeners"));
-            }
-        }
-        catch (SQLException e){
-            messageService.showError("Ошибка при получении артиста по id:\n" +e.getMessage());
-            throw e;
-        }
-        return artist;
-    }
-
-    @Override
     public List<Map<String, Object>> findByName(String name) throws SQLException {
         String sql = "SELECT * FROM Artist WHERE artist_name LIKE ?";
         List<Map<String, Object>> artists = new ArrayList<>();

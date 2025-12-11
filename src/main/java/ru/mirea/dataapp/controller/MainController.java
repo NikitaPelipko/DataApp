@@ -199,7 +199,7 @@ public class MainController {
         String selected = tableSelector.getValue();
         String text = searchField.getText();
         if (selected == null || text == null || text.isBlank()) {
-            loadSelectedTable(); // если строка пустая — показать всё
+            loadSelectedTable();
             return;
         }
 

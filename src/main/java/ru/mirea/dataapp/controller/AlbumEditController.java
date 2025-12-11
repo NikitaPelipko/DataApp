@@ -155,7 +155,7 @@ public class AlbumEditController {
 
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                String selected = result.get(); // формат "id - name"
+                String selected = result.get();
                 String idStr = selected.split(" - ")[0].trim();
                 artistIdField.setText(idStr);
             }

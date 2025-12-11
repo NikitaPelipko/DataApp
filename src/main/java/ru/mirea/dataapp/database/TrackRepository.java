@@ -12,13 +12,7 @@ public interface TrackRepository {
 
     List<Map<String, Object>> findAll() throws SQLException;
 
-    Map<String, Object> findById(int trackId) throws SQLException;
-
     List<Map<String, Object>> findByName(String name) throws SQLException;
-
-    List<Map<String, Object>> findByAlbum(int albumId) throws SQLException;
-
-    List<Map<String, Object>> findAllWithDetails() throws SQLException;
 
     void deleteTrack(Integer trackId) throws SQLException;
 }

@@ -13,8 +13,6 @@ public interface ArtistRepository {
 
     List<Map<String, Object>> findAll() throws SQLException;
 
-    Map<String, Object> findById(int artistId) throws SQLException;
-
     List<Map<String, Object>> findByName(String name) throws SQLException;
 
     void deleteById(int artistId) throws SQLException;

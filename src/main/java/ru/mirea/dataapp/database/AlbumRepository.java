@@ -12,11 +12,7 @@ public interface AlbumRepository {
 
     List<Map<String, Object>> findAll() throws SQLException;
 
-    Map<String, Object> findById(int albumId) throws SQLException;
-
     List<Map<String, Object>> findByName(String name) throws SQLException;
-
-    List<Map<String, Object>> findByArtist(int artistId) throws SQLException;
 
     void deleteAlbum(Integer albumId) throws SQLException;
 
